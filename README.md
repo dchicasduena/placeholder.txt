@@ -1,5 +1,5 @@
 # placeholder.txt
-1v1 unreal tournamentish game? maybe?
+1v1 unreal tournamentish web game? maybe?
 
 made with:
 - [godot](https://godotengine.org/)
