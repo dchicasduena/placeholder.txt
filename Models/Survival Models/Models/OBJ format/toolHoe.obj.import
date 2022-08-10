@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/toolHoe.obj-4655c3ca911ba7f8db6638b374cc6894.mesh"
+
+[deps]
+
+files=[ "res://.import/toolHoe.obj-4655c3ca911ba7f8db6638b374cc6894.mesh" ]
+
+source_file="res://Models/Survival Models/Models/OBJ format/toolHoe.obj"
+dest_files=[ "res://.import/toolHoe.obj-4655c3ca911ba7f8db6638b374cc6894.mesh", "res://.import/toolHoe.obj-4655c3ca911ba7f8db6638b374cc6894.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

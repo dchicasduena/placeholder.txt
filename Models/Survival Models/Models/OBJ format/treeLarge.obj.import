@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/treeLarge.obj-775d3d6829bd8d88d2ede861753ebf84.mesh"
+
+[deps]
+
+files=[ "res://.import/treeLarge.obj-775d3d6829bd8d88d2ede861753ebf84.mesh" ]
+
+source_file="res://Models/Survival Models/Models/OBJ format/treeLarge.obj"
+dest_files=[ "res://.import/treeLarge.obj-775d3d6829bd8d88d2ede861753ebf84.mesh", "res://.import/treeLarge.obj-775d3d6829bd8d88d2ede861753ebf84.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

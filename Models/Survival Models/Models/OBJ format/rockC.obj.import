@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/rockC.obj-2bca5cc05b3ee220f7e74e31ce4c03be.mesh"
+
+[deps]
+
+files=[ "res://.import/rockC.obj-2bca5cc05b3ee220f7e74e31ce4c03be.mesh" ]
+
+source_file="res://Models/Survival Models/Models/OBJ format/rockC.obj"
+dest_files=[ "res://.import/rockC.obj-2bca5cc05b3ee220f7e74e31ce4c03be.mesh", "res://.import/rockC.obj-2bca5cc05b3ee220f7e74e31ce4c03be.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

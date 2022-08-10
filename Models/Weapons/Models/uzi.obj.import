@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/uzi.obj-7ca003fd4a111b020337517cde08c440.mesh"
+
+[deps]
+
+files=[ "res://.import/uzi.obj-7ca003fd4a111b020337517cde08c440.mesh" ]
+
+source_file="res://Models/Weapons/Models/uzi.obj"
+dest_files=[ "res://.import/uzi.obj-7ca003fd4a111b020337517cde08c440.mesh", "res://.import/uzi.obj-7ca003fd4a111b020337517cde08c440.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

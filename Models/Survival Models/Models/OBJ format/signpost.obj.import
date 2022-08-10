@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/signpost.obj-57243ad9a3438aec5e62bf1583eed1cc.mesh"
+
+[deps]
+
+files=[ "res://.import/signpost.obj-57243ad9a3438aec5e62bf1583eed1cc.mesh" ]
+
+source_file="res://Models/Survival Models/Models/OBJ format/signpost.obj"
+dest_files=[ "res://.import/signpost.obj-57243ad9a3438aec5e62bf1583eed1cc.mesh", "res://.import/signpost.obj-57243ad9a3438aec5e62bf1583eed1cc.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
