@@ -8,3 +8,4 @@ made with:
 resources used:
 - [first person starter](https://godotengine.org/asset-library/asset/424)
 - [kenney weapon pack] (https://kenney.nl/assets/weapon-pa
+- http://paulgestwicki.blogspot.com/2020/07/deploying-godot-engine-web-games-to.html
