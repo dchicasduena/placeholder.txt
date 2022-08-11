@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/sword_scimitar.obj-02612988b8965d2a1348d8fa7c51a179.mesh"
+
+[deps]
+
+files=[ "res://.import/sword_scimitar.obj-02612988b8965d2a1348d8fa7c51a179.mesh" ]
+
+source_file="res://Models/Pirate/Models/OBJ format/sword_scimitar.obj"
+dest_files=[ "res://.import/sword_scimitar.obj-02612988b8965d2a1348d8fa7c51a179.mesh", "res://.import/sword_scimitar.obj-02612988b8965d2a1348d8fa7c51a179.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/palm_detailed_long.obj-93cab3181b1947e1e0b8e2957ab9f15b.mesh"
+
+[deps]
+
+files=[ "res://.import/palm_detailed_long.obj-93cab3181b1947e1e0b8e2957ab9f15b.mesh" ]
+
+source_file="res://Models/Pirate/Models/OBJ format/palm_detailed_long.obj"
+dest_files=[ "res://.import/palm_detailed_long.obj-93cab3181b1947e1e0b8e2957ab9f15b.mesh", "res://.import/palm_detailed_long.obj-93cab3181b1947e1e0b8e2957ab9f15b.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

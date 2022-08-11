@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/formation_rock.obj-b728c73b9bbd093b8cfeaa95644ea8c8.mesh"
+
+[deps]
+
+files=[ "res://.import/formation_rock.obj-b728c73b9bbd093b8cfeaa95644ea8c8.mesh" ]
+
+source_file="res://Models/Pirate/Models/OBJ format/formation_rock.obj"
+dest_files=[ "res://.import/formation_rock.obj-b728c73b9bbd093b8cfeaa95644ea8c8.mesh", "res://.import/formation_rock.obj-b728c73b9bbd093b8cfeaa95644ea8c8.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

@@ -1,90 +1,235 @@
 extends KinematicBody
 
-# stats
-var curHp : int = 10
-var maxHp : int = 10
-var ammo : int = 15
-var score : int = 0
-# physics
-var moveSpeed : float = 5.0
-var jumpForce : float = 5.0
-var gravity : float = 12.0
-# cam look
+var cmd = {
+	forward_move 	= 0.0,
+	right_move 		= 0.0,
+	up_move 		= 0.0
+}
+
+export var x_mouse_sensitivity = .1
+
+export var gravity = 20
+
+onready var camera = get_node("Camera")
+var mouseDelta : Vector2 = Vector2()
+var lookSensitivity : float = 0.5
 var minLookAngle : float = -90.0
 var maxLookAngle : float = 90.0
-var lookSensitivity : float = 0.5
-# vectors
-var vel : Vector3 = Vector3()
-var mouseDelta : Vector2 = Vector2()
 
-onready var muzzle = get_node("Camera/GunModel/Muzzle")
-onready var bulletScene = preload("res://Bullet.tscn")
+export var friction = 6.0
 
-# player components
-onready var camera = get_node("Camera")
+export var move_speed = 15.0
+export var run_acceleration = 14.0
+export var run_deacceleration = 10.0
+export var air_acceleration = 2.0
+export var air_deacceleration = 2.0
+export var air_control = 0.3
+export var side_strafe_acceleration = 50.0
+export var side_strafe_speed = 1.0
+export var jump_speed = 8.0
+export var move_scale = 1.0
 
-# Called when the node enters the scene tree for the first time.
+export var ground_snap_tolerance = 1
+
+var move_direction_norm = Vector3()
+var player_velocity = Vector3()
+
+var up = Vector3(0,1,0)
+
+var wish_jump = false;
+
+var touching_ground = false;
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-# called when an input is detected
-func _input (event):
-	# did the mouse move?
-	if event is InputEventMouseMotion:
-		mouseDelta = event.relative
+	set_physics_process(true)
 		
-# called every frame
-func _process (delta):
-	# rotate camera along X axis
-	camera.rotation_degrees -= Vector3(rad2deg(mouseDelta.y), 0, 0) * lookSensitivity * delta
-	# clamp the vertical camera rotation
-	camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, minLookAngle, maxLookAngle)
-  
-	# rotate player along Y axis
-	rotation_degrees -= Vector3(0, rad2deg(mouseDelta.x), 0) * lookSensitivity * delta
-  
-	# reset the mouse delta vector
-	mouseDelta = Vector2()
+func _physics_process(delta):
+	queue_jump()
+	if touching_ground:
+		ground_move(delta)
+	else:
+		air_move(delta)
 	
-	# check to see if we're shooting
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
-	
-func _physics_process (delta):
-	# reset the x and z velocity
-	vel.x = 0
-	vel.z = 0
-	var input = Vector2()
-	# movement inputs
-	if Input.is_action_pressed("move_forward"):
-		input.y -= 1
-	if Input.is_action_pressed("move_backward"):
-		input.y += 1
-	if Input.is_action_pressed("move_left"):
-		input.x -= 1
-	if Input.is_action_pressed("move_right"):
-		input.x += 1
-	# normalize the input so we can't move faster diagonally
-	input = input.normalized()
+	player_velocity = move_and_slide(player_velocity, up)
+	touching_ground = is_on_floor()
 
-	var forward = global_transform.basis.z
-	var right = global_transform.basis.x
+func snap_to_ground(from):
+	#var from = global_transform.origin
+	var to = from + -global_transform.basis.y * ground_snap_tolerance
+	var space_state = get_world().get_direct_space_state()
 	
-	# set the velocity
-	vel.z = (forward * input.y + right * input.x).z * moveSpeed
-	vel.x = (forward * input.y + right * input.x).x * moveSpeed
-	# apply gravity
-	vel.y -= gravity * delta
-	# move the player
-	vel = move_and_slide(vel, Vector3.UP)
+	var result = space_state.intersect_ray(from, to)
+	if !result.empty():
+		global_transform.origin.y = result.position.y
+
+func set_movement_dir():
+	cmd.forward_move = 0.0
+	cmd.right_move = 0.0
+	cmd.forward_move += int(Input.is_action_pressed("move_forward"))
+	cmd.forward_move -= int(Input.is_action_pressed("move_backward"))
+	cmd.right_move += int(Input.is_action_pressed("move_right"))
+	cmd.right_move -= int(Input.is_action_pressed("move_left"))
+
+func queue_jump():
+	if Input.is_action_just_pressed("jump") and !wish_jump:
+		wish_jump = true
+	if Input.is_action_just_released("jump"):
+		wish_jump = false
+
+func air_move(delta):
+	var wishdir = Vector3()
+	var wishvel = air_acceleration
+	var accel = 0.0
 	
-	# jump if we press the jump button and are standing on the floor
-	if Input.is_action_pressed("jump") and is_on_floor():
-		vel.y = jumpForce
+	var scale = cmd_scale()
+	
+	set_movement_dir()
+	
+	wishdir += transform.basis.x * cmd.right_move
+	wishdir -= transform.basis.z * cmd.forward_move
+	
+	var wishspeed = wishdir.length()
+	wishspeed *= move_speed
+	
+	wishdir = wishdir.normalized()
+	move_direction_norm = wishdir
+	
+	var wishspeed2 = wishspeed
+	if player_velocity.dot(wishdir) < 0:
+		accel = air_deacceleration
+	else:
+		accel = air_acceleration
+	
+	if(cmd.forward_move == 0) and (cmd.right_move != 0):
+		if wishspeed > side_strafe_speed:
+			wishspeed = side_strafe_speed
+		accel = side_strafe_acceleration
 		
-func shoot ():
-	var bullet = bulletScene.instance()
-	get_node("/root/MainScene").add_child(bullet)
-	bullet.global_transform = muzzle.global_transform
-	bullet.scale = Vector3.ONE
-	ammo -= 1
+	accelerate(wishdir, wishspeed, accel, delta)
+	if air_control > 0:
+		air_control(wishdir, wishspeed2, delta)
+		
+	player_velocity.y -= gravity * delta
+
+func air_control(wishdir, wishspeed, delta):
+	var zspeed = 0.0
+	var speed = 0.0
+	var dot = 0.0
+	var k = 0.0
+	
+	if (abs(cmd.forward_move) < 0.001) or (abs(wishspeed) < 0.001):
+		return
+	zspeed = player_velocity.y
+	player_velocity.y = 0
+	
+	speed = player_velocity.length()
+	player_velocity = player_velocity.normalized()
+	
+	dot = player_velocity.dot(wishdir)
+	k = 32.0
+	k *= air_control * dot * dot * delta
+	
+	if dot > 0:
+		player_velocity.x = player_velocity.x * speed + wishdir.x * k
+		player_velocity.y = player_velocity.y * speed + wishdir.y * k 
+		player_velocity.z = player_velocity.z * speed + wishdir.z * k 
+		
+		player_velocity = player_velocity.normalized()
+		move_direction_norm = player_velocity
+	
+	player_velocity.x *= speed 
+	player_velocity.y = zspeed 
+	player_velocity.z *= speed 
+
+func ground_move(delta):
+	var wishdir = Vector3()
+	
+	if (!wish_jump):
+		apply_friction(1.0, delta)
+	else:
+		apply_friction(0, delta)
+	
+	set_movement_dir()
+	
+	var scale = cmd_scale()
+	
+	wishdir += transform.basis.x * cmd.right_move
+	wishdir -= transform.basis.z * cmd.forward_move
+	
+	wishdir = wishdir.normalized()
+	move_direction_norm = wishdir
+	
+	var wishspeed = wishdir.length()
+	wishspeed *= move_speed
+	
+	accelerate(wishdir, wishspeed, run_acceleration, delta)
+	
+	player_velocity.y = 0.0
+	
+	if wish_jump:
+		player_velocity.y = jump_speed
+		wish_jump = false
+
+func apply_friction(t, delta):
+	var vec = player_velocity
+	var speed = 0.0
+	var newspeed = 0.0
+	var control = 0.0
+	var drop = 0.0
+	
+	vec.y = 0.0
+	speed = vec.length()
+	drop = 0.0
+	
+	if touching_ground:
+		if speed < run_deacceleration:
+			control = run_deacceleration
+		else:
+			control = speed
+		drop = control * friction * delta * t
+	
+	newspeed = speed - drop;
+	if newspeed < 0:
+		newspeed = 0
+	if speed > 0:
+		newspeed /= speed
+	
+	player_velocity.x *= newspeed
+	player_velocity.z *= newspeed
+
+func accelerate(wishdir, wishspeed, accel, delta):
+	var addspeed = 0.0
+	var accelspeed = 0.0
+	var currentspeed = 0.0
+	
+	currentspeed = player_velocity.dot(wishdir)
+	addspeed = wishspeed - currentspeed
+	if addspeed <=0:
+		return
+	accelspeed = accel * delta * wishspeed
+	if accelspeed > addspeed:
+		accelspeed = addspeed
+	
+	player_velocity.x += accelspeed * wishdir.x
+	player_velocity.z += accelspeed * wishdir.z
+
+func cmd_scale():
+	var var_max = 0
+	var total = 0.0
+	var scale = 0.0
+	
+	var_max = int(abs(cmd.forward_move))
+	if(abs(cmd.right_move) > var_max):
+		var_max = int(abs(cmd.right_move))
+	if var_max <= 0:
+		return 0
+	
+	total = sqrt(cmd.forward_move * cmd.forward_move + cmd.right_move * cmd.right_move)
+	scale = move_speed * var_max / (move_scale * total)
+	
+	return scale
+
+func _input(ev):
+	if (ev is InputEventMouseMotion):
+		rotate_y(-deg2rad(ev.relative.x) * x_mouse_sensitivity)

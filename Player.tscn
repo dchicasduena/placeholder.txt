@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Models/Weapons/Models/shotgun.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Models/Pirate/Models/OBJ format/sword.obj" type="ArrayMesh" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
 height = 1.5
 
 [node name="Player" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0466347, -0.00194359, -0.0214607 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.25, 0 )
@@ -18,10 +20,20 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
 environment = ExtResource( 1 )
 current = true
 
+[node name="sword" type="MeshInstance" parent="Camera"]
+transform = Transform( -0.2, -8.36287e-09, 2.17502e-08, -2.11121e-08, 0.144045, -0.138748, -9.86333e-09, -0.138748, -0.144045, 0.639914, -0.460901, -0.883822 )
+mesh = ExtResource( 3 )
+skeleton = NodePath("../GunModel")
+__meta__ = {
+"_editor_description_": "	"
+}
+
 [node name="GunModel" type="MeshInstance" parent="Camera"]
-transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 0.2, -0.2, -0.7 )
+transform = Transform( -10, 0, 8.74228e-07, 0, 10, 0, -8.74228e-07, 0, -10, 0.180031, -0.200001, -0.700713 )
+visible = false
 mesh = ExtResource( 2 )
 skeleton = NodePath("../..")
 
 [node name="Muzzle" type="Spatial" parent="Camera/GunModel"]
 transform = Transform( 1, 0, -7.10543e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 0, 0.0446114 )
+visible = false
