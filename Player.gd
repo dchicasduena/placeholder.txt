@@ -10,7 +10,8 @@ export var x_mouse_sensitivity = .1
 
 export var gravity = 20
 
-onready var camera = get_node("Camera")
+onready var Camera = $Camera
+#onready var camera = get_node("Camera")
 var mouseDelta : Vector2 = Vector2()
 var lookSensitivity : float = 0.5
 var minLookAngle : float = -90.0
@@ -53,6 +54,11 @@ func _physics_process(delta):
 	
 	player_velocity = move_and_slide(player_velocity, up)
 	touching_ground = is_on_floor()
+	
+	#camera.rotation_degrees.x -= mouseDelta.y * lookSensitivity * delta
+	#camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, minLookAngle, maxLookAngle)
+	#rotation_degrees.y -= mouseDelta.x * lookSensitivity * delta
+	#mouseDelta = Vector2()
 
 func snap_to_ground(from):
 	#var from = global_transform.origin
@@ -232,4 +238,5 @@ func cmd_scale():
 
 func _input(ev):
 	if (ev is InputEventMouseMotion):
-		rotate_y(-deg2rad(ev.relative.x) * x_mouse_sensitivity)
+		mouseDelta = ev.relative
+		

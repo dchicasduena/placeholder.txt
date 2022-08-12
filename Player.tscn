@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://default_env.tres" type="Environment" id=1]
 [ext_resource path="res://Models/Weapons/Models/shotgun.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://Models/Pirate/Models/OBJ format/sword.obj" type="ArrayMesh" id=3]
+[ext_resource path="res://Camera.gd" type="Script" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -19,6 +20,7 @@ shape = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
 environment = ExtResource( 1 )
 current = true
+script = ExtResource( 4 )
 
 [node name="sword" type="MeshInstance" parent="Camera"]
 transform = Transform( -0.2, -8.36287e-09, 2.17502e-08, -2.11121e-08, 0.144045, -0.138748, -9.86333e-09, -0.138748, -0.144045, 0.639914, -0.460901, -0.883822 )
