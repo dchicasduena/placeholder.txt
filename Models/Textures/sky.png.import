@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/grass.jpeg-3ef9d972abda6bf261781865c3fe1439.s3tc.stex"
-path.etc="res://.import/grass.jpeg-3ef9d972abda6bf261781865c3fe1439.etc.stex"
+path.s3tc="res://.import/sky.png-e6a7f5294d2484f21552826410ee3171.s3tc.stex"
+path.etc="res://.import/sky.png-e6a7f5294d2484f21552826410ee3171.etc.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Models/Textures/grass.jpeg"
-dest_files=[ "res://.import/grass.jpeg-3ef9d972abda6bf261781865c3fe1439.s3tc.stex", "res://.import/grass.jpeg-3ef9d972abda6bf261781865c3fe1439.etc.stex" ]
+source_file="res://Models/Textures/sky.png"
+dest_files=[ "res://.import/sky.png-e6a7f5294d2484f21552826410ee3171.s3tc.stex", "res://.import/sky.png-e6a7f5294d2484f21552826410ee3171.etc.stex" ]
 
 [params]
 

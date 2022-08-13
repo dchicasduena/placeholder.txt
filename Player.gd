@@ -11,7 +11,6 @@ export var x_mouse_sensitivity = .1
 export var gravity = 20
 
 onready var Camera = $Camera
-#onready var camera = get_node("Camera")
 var mouseDelta : Vector2 = Vector2()
 var lookSensitivity : float = 0.5
 var minLookAngle : float = -90.0
@@ -19,26 +18,29 @@ var maxLookAngle : float = 90.0
 
 export var friction = 6.0
 
+var wall_normal
+var w_runnable = false
+
 export var move_speed = 15.0
-export var run_acceleration = 14.0
-export var run_deacceleration = 10.0
+export var run_acceleration = 10.0
+export var run_deacceleration = 8.0
 export var air_acceleration = 2.0
 export var air_deacceleration = 2.0
 export var air_control = 0.3
 export var side_strafe_acceleration = 50.0
 export var side_strafe_speed = 1.0
-export var jump_speed = 8.0
+export var jump_speed = 7.0
 export var move_scale = 1.0
 
 export var ground_snap_tolerance = 1
 
+var fall = Vector3() 
 var move_direction_norm = Vector3()
 var player_velocity = Vector3()
 
 var up = Vector3(0,1,0)
 
 var wish_jump = false;
-
 var touching_ground = false;
 
 func _ready():
@@ -54,14 +56,9 @@ func _physics_process(delta):
 	
 	player_velocity = move_and_slide(player_velocity, up)
 	touching_ground = is_on_floor()
-	
-	#camera.rotation_degrees.x -= mouseDelta.y * lookSensitivity * delta
-	#camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, minLookAngle, maxLookAngle)
-	#rotation_degrees.y -= mouseDelta.x * lookSensitivity * delta
-	#mouseDelta = Vector2()
+	wall_run()
 
 func snap_to_ground(from):
-	#var from = global_transform.origin
 	var to = from + -global_transform.basis.y * ground_snap_tolerance
 	var space_state = get_world().get_direct_space_state()
 	
@@ -235,6 +232,16 @@ func cmd_scale():
 	scale = move_speed * var_max / (move_scale * total)
 	
 	return scale
+	
+func wall_run():
+	if w_runnable:		
+		if Input.is_action_pressed("jump"):	
+			if Input.is_action_pressed("move_forward"):
+				if is_on_wall():
+					wall_normal = get_slide_collision(0)
+					yield(get_tree().create_timer(0.2), "timeout")
+					fall.y = 0
+					move_direction_norm = -wall_normal.normal * move_speed
 
 func _input(ev):
 	if (ev is InputEventMouseMotion):
