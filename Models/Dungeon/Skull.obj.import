@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Skull.obj-34955558a3c1db4f56d8a97d6bf19742.mesh"
+
+[deps]
+
+files=[ "res://.import/Skull.obj-34955558a3c1db4f56d8a97d6bf19742.mesh" ]
+
+source_file="res://Models/Dungeon/Skull.obj"
+dest_files=[ "res://.import/Skull.obj-34955558a3c1db4f56d8a97d6bf19742.mesh", "res://.import/Skull.obj-34955558a3c1db4f56d8a97d6bf19742.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

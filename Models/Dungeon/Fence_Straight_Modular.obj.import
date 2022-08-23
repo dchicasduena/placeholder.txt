@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Fence_Straight_Modular.obj-92a9b828a6cb8c9fdba657d7e81cc0cf.mesh"
+
+[deps]
+
+files=[ "res://.import/Fence_Straight_Modular.obj-92a9b828a6cb8c9fdba657d7e81cc0cf.mesh" ]
+
+source_file="res://Models/Dungeon/Fence_Straight_Modular.obj"
+dest_files=[ "res://.import/Fence_Straight_Modular.obj-92a9b828a6cb8c9fdba657d7e81cc0cf.mesh", "res://.import/Fence_Straight_Modular.obj-92a9b828a6cb8c9fdba657d7e81cc0cf.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

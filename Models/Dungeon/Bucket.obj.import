@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Bucket.obj-4705863f93b2cb2ba5cb15a803826185.mesh"
+
+[deps]
+
+files=[ "res://.import/Bucket.obj-4705863f93b2cb2ba5cb15a803826185.mesh" ]
+
+source_file="res://Models/Dungeon/Bucket.obj"
+dest_files=[ "res://.import/Bucket.obj-4705863f93b2cb2ba5cb15a803826185.mesh", "res://.import/Bucket.obj-4705863f93b2cb2ba5cb15a803826185.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Column.obj-6cbcd865e1d2c23543e43fbd51d886be.mesh"
+
+[deps]
+
+files=[ "res://.import/Column.obj-6cbcd865e1d2c23543e43fbd51d886be.mesh" ]
+
+source_file="res://Models/Dungeon/Column.obj"
+dest_files=[ "res://.import/Column.obj-6cbcd865e1d2c23543e43fbd51d886be.mesh", "res://.import/Column.obj-6cbcd865e1d2c23543e43fbd51d886be.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

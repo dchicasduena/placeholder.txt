@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Barrel2.obj-24e68dfa52033662c0602ab946ac092a.mesh"
+
+[deps]
+
+files=[ "res://.import/Barrel2.obj-24e68dfa52033662c0602ab946ac092a.mesh" ]
+
+source_file="res://Models/Dungeon/Barrel2.obj"
+dest_files=[ "res://.import/Barrel2.obj-24e68dfa52033662c0602ab946ac092a.mesh", "res://.import/Barrel2.obj-24e68dfa52033662c0602ab946ac092a.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

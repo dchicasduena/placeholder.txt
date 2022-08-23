@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Bag_Coins.obj-5f9997e008c72aa66ad7677ea4b61707.mesh"
+
+[deps]
+
+files=[ "res://.import/Bag_Coins.obj-5f9997e008c72aa66ad7677ea4b61707.mesh" ]
+
+source_file="res://Models/Dungeon/Bag_Coins.obj"
+dest_files=[ "res://.import/Bag_Coins.obj-5f9997e008c72aa66ad7677ea4b61707.mesh", "res://.import/Bag_Coins.obj-5f9997e008c72aa66ad7677ea4b61707.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

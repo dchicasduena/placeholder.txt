@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Arch_Door.obj-f916a46fdfe887b9e02587d296be8060.mesh"
+
+[deps]
+
+files=[ "res://.import/Arch_Door.obj-f916a46fdfe887b9e02587d296be8060.mesh" ]
+
+source_file="res://Models/Dungeon/Arch_Door.obj"
+dest_files=[ "res://.import/Arch_Door.obj-f916a46fdfe887b9e02587d296be8060.mesh", "res://.import/Arch_Door.obj-f916a46fdfe887b9e02587d296be8060.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
